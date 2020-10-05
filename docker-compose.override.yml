@@ -1,0 +1,60 @@
+version: '3.4'
+
+services:
+  bankdatabaseserver:
+    container_name: bankdatabaseserver
+    ports:
+      - "1443:1433"
+    environment:
+      SA_PASSWORD: "Sa123456+"
+      ACCEPT_EULA: "Y"
+      
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest    
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+      
+      
+      
+  microrabbit.transfer.api:
+    container_name: transferapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:TransferDbConnection=Server=bankdatabaseserver;Database=TransferDB;User Id=sa;Password=Sa123456+"
+      - "EventBus:HostName=rabbitmq"
+      - "EventBus:UserName=guest"
+      - "EventBus:Password=guest"
+    ports:
+      - "8003:80"
+    depends_on:
+      - bankdatabaseserver
+      - rabbitmq
+    restart: on-failure
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+
+
+  microrabbit.banking.api:
+    container_name: bankingapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:BankingDbConnection=Server=bankdatabaseserver;Database=BankingDb;User Id=sa;Password=Sa123456+"
+      - "EventBus:HostName=rabbitmq"
+      - "EventBus:UserName=guest"
+      - "EventBus:Password=guest"
+    ports:
+      - "8002:80"
+    depends_on:
+      - bankdatabaseserver
+      - rabbitmq
+    restart: on-failure
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro

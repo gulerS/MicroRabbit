@@ -37,7 +37,7 @@ namespace Microrabbit.Banking.Api
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Banking Microservice", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo {Title = "Banking Microservice", Version = "v1"});
             });
 
             services.AddMediatR(typeof(Startup));
@@ -54,31 +54,25 @@ namespace Microrabbit.Banking.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, BankingDbContext dbContext)
         {
+            dbContext.Database.Migrate();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
 
             app.UseSwagger();
-            app.UseSwaggerUI(o =>
-            {
-                o.SwaggerEndpoint("/swagger/v1/swagger.json", "Banking Microservice V1");
-            });
-            
+            app.UseSwaggerUI(o => { o.SwaggerEndpoint("/swagger/v1/swagger.json", "Banking Microservice V1"); });
 
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

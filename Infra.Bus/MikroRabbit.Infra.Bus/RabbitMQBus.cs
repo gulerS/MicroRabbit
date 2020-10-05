@@ -7,6 +7,7 @@ using MediatR;
 using MicroRabbit.Domain.Core.Bus;
 using MicroRabbit.Domain.Core.Commands;
 using MicroRabbit.Domain.Core.Events;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
@@ -20,6 +21,7 @@ namespace MikroRabbit.Infra.Bus
         private readonly Dictionary<string, List<Type>> _handlers;
         private readonly List<Type> _eventTypes;
         private readonly IServiceScopeFactory _serviceScopeFactory;
+
 
         public RabbitMQBus(IMediator mediator, IServiceScopeFactory serviceScopeFactory)
         {
@@ -36,7 +38,23 @@ namespace MikroRabbit.Infra.Bus
 
         public void Publish<T>(T @event) where T : Event
         {
-            var factory = new ConnectionFactory() {HostName = "localhost"};
+            var hostName = "";
+            var userName = "";
+            var password = "";
+            using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                var config = scope.ServiceProvider.GetRequiredService<IConfiguration>();
+                hostName = config.GetSection("EventBus:HostName").Value;
+                userName = config.GetSection("EventBus:UserName").Value;
+                password = config.GetSection("EventBus:Password").Value;
+            }
+
+            var factory = new ConnectionFactory()
+            {
+                HostName = hostName,
+                UserName = userName,
+                Password = password
+            };
 
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
@@ -81,7 +99,24 @@ namespace MikroRabbit.Infra.Bus
 
         private void StartBasicConsume<T>() where T : Event
         {
-            var factory = new ConnectionFactory() {HostName = "localhost", DispatchConsumersAsync = true};
+            var hostName = "";
+            var userName = "";
+            var password = "";
+            using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                var config = scope.ServiceProvider.GetRequiredService<IConfiguration>();
+                hostName = config.GetSection("EventBus:HostName").Value;
+                userName = config.GetSection("EventBus:UserName").Value;
+                password = config.GetSection("EventBus:Password").Value;
+            }
+
+            var factory = new ConnectionFactory()
+            {
+                HostName = hostName,
+                UserName = userName,
+                Password = password,
+                DispatchConsumersAsync = true
+            };
 
             var connection = factory.CreateConnection();
             var channel = connection.CreateModel();

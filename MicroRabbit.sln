@@ -45,13 +45,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{F4C1CE7D-3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{C638C89F-6120-40CC-A1F4-8D5E5B204F61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microrabbit.Transfer.Api", "Microservices\Transfer\Api\Microrabbit.Transfer.Api\Microrabbit.Transfer.Api.csproj", "{90A1A6AB-22B9-4D36-94DD-477E6C93CACE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microrabbit.Transfer.Api", "Microservices\Transfer\Api\Microrabbit.Transfer.Api\Microrabbit.Transfer.Api.csproj", "{90A1A6AB-22B9-4D36-94DD-477E6C93CACE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microrabbit.Transfer.Application", "Microservices\Transfer\Application\Microrabbit.Transfer.Application\Microrabbit.Transfer.Application.csproj", "{8A57BAFA-317B-4DA4-AC86-B89F33080CC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microrabbit.Transfer.Application", "Microservices\Transfer\Application\Microrabbit.Transfer.Application\Microrabbit.Transfer.Application.csproj", "{8A57BAFA-317B-4DA4-AC86-B89F33080CC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroRabbit.Transfer.Data", "Microservices\Transfer\Data\MicroRabbit.Transfer.Data\MicroRabbit.Transfer.Data.csproj", "{02E0C596-C2BD-4FB3-BB67-89F1A0164F76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroRabbit.Transfer.Data", "Microservices\Transfer\Data\MicroRabbit.Transfer.Data\MicroRabbit.Transfer.Data.csproj", "{02E0C596-C2BD-4FB3-BB67-89F1A0164F76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microrabbit.Transfer.Domain", "Microservices\Transfer\Domain\Microrabbit.Transfer.Domain\Microrabbit.Transfer.Domain.csproj", "{DF21AF72-58FA-4999-AB53-47895D5E48EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microrabbit.Transfer.Domain", "Microservices\Transfer\Domain\Microrabbit.Transfer.Domain\Microrabbit.Transfer.Domain.csproj", "{DF21AF72-58FA-4999-AB53-47895D5E48EA}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E89A52FB-3F75-4035-9386-3F38C2F9AE53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -195,6 +197,18 @@ Global
 		{DF21AF72-58FA-4999-AB53-47895D5E48EA}.Release|x64.Build.0 = Release|Any CPU
 		{DF21AF72-58FA-4999-AB53-47895D5E48EA}.Release|x86.ActiveCfg = Release|Any CPU
 		{DF21AF72-58FA-4999-AB53-47895D5E48EA}.Release|x86.Build.0 = Release|Any CPU
+		{E89A52FB-3F75-4035-9386-3F38C2F9AE53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E89A52FB-3F75-4035-9386-3F38C2F9AE53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E89A52FB-3F75-4035-9386-3F38C2F9AE53}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E89A52FB-3F75-4035-9386-3F38C2F9AE53}.Debug|x64.Build.0 = Debug|Any CPU
+		{E89A52FB-3F75-4035-9386-3F38C2F9AE53}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E89A52FB-3F75-4035-9386-3F38C2F9AE53}.Debug|x86.Build.0 = Debug|Any CPU
+		{E89A52FB-3F75-4035-9386-3F38C2F9AE53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E89A52FB-3F75-4035-9386-3F38C2F9AE53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E89A52FB-3F75-4035-9386-3F38C2F9AE53}.Release|x64.ActiveCfg = Release|Any CPU
+		{E89A52FB-3F75-4035-9386-3F38C2F9AE53}.Release|x64.Build.0 = Release|Any CPU
+		{E89A52FB-3F75-4035-9386-3F38C2F9AE53}.Release|x86.ActiveCfg = Release|Any CPU
+		{E89A52FB-3F75-4035-9386-3F38C2F9AE53}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

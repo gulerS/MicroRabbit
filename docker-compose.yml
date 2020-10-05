@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    
+  bankdatabaseserver:
+    image: mcr.microsoft.com/mssql/server:2017-CU8-ubuntu
+    
+  microrabbit.transfer.api:
+    image: ${DOCKER_REGISTRY-}microrabbittransferapi
+    build:
+      context: .
+      dockerfile: Microservices/Transfer/Api/Microrabbit.Transfer.Api/Dockerfile
+
+  microrabbit.banking.api:
+    image: ${DOCKER_REGISTRY-}microrabbitbankingapi
+    build:
+      context: .
+      dockerfile: Microservices/Banking/Api/Microrabbit.Banking.Api/Dockerfile
+
