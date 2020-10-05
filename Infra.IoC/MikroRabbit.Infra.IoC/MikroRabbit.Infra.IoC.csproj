@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.8" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infra.Bus\MikroRabbit.Infra.Bus\MikroRabbit.Infra.Bus.csproj" />
+    <ProjectReference Include="..\..\Domain\MicroRabbit.Domain.Core\MicroRabbit.Domain.Core.csproj" />
+    <ProjectReference Include="..\..\Microservices\Banking\Application\Microrabbit.Banking.Application\Microrabbit.Banking.Application.csproj" />
+    <ProjectReference Include="..\..\Microservices\Banking\Data\Microrabbit.Banking.Data\Microrabbit.Banking.Data.csproj" />
+    <ProjectReference Include="..\..\Microservices\Transfer\Application\Microrabbit.Transfer.Application\Microrabbit.Transfer.Application.csproj" />
+    <ProjectReference Include="..\..\Microservices\Transfer\Data\MicroRabbit.Transfer.Data\MicroRabbit.Transfer.Data.csproj" />
+  </ItemGroup>
+</Project>
